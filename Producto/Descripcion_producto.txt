@@ -1,0 +1,11 @@
+WLSuiteFrontend-dev.zip
+El archivo WLSuiteFrontend contiene React.js 19 y Vite. Actúa como una SPA que gestiona el enrutamiento del lado del cliente (vía React Router) y la gestión del estado de la interfaz sin requerir recargas de página.
+URL publica del repositorio: https://github.com/Amaaruu/WLSuiteFrontend.git
+
+Landingbackend-main.zip
+El archivo Landingbackend usando Spring Boot 3.2.5. Actúa como el núcleo del sistema, gestionando la autenticación, la lógica transaccional, el acceso a la base de datos relacional y la orquestación de llamadas hacia servicios externos.
+URL publica del repositorio: https://github.com/Amaaruu/Landingbackend.git
+
+WLSuitePythonAPI-main.zip
+El archivo WLSuitePythonAPI-main Es un componente desacoplado que recibe las solicitudes estructuradas del Backend Central y se encarga exclusivamente de procesar los prompts.
+URL publica del repositorio: https://github.com/Amaaruu/WLSuitePythonAPI.git
