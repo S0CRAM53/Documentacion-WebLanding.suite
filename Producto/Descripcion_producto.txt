@@ -1,11 +1,89 @@
-WLSuiteFrontend-dev.zip
+============================================================================================================
+WLSuiteFrontend-main.zip
 El archivo WLSuiteFrontend contiene React.js 19 y Vite. Actúa como una SPA que gestiona el enrutamiento del lado del cliente (vía React Router) y la gestión del estado de la interfaz sin requerir recargas de página.
-URL publica del repositorio: https://github.com/Amaaruu/WLSuiteFrontend.git
 
+URL pública del repositorio: https://github.com/Amaaruu/WLSuiteFrontend.git
+Contenido principal:
+
+src/App.jsx — Configuración central de rutas con React Router v7. Define rutas públicas, protegidas por     autenticación, exclusivas para usuarios normales y exclusivas para administradores.
+
+src/context/AuthContext.jsx — Contexto global de autenticación. Gestiona el estado del usuario en sesión.
+
+src/context/FormContext.jsx — Contexto del formulario multi-paso de creación de landing. Centraliza formData y updateField.
+
+src/components/organisms/LandingForm.jsx — Formulario principal dividido en 5 pasos: Identidad, Comunicación, Estilo visual, Diseño avanzado y Revisión.
+
+src/components/organisms/steps/ — Componentes de cada paso del formulario (Step1Identity, Step2Communication, Step3Visual, Step4Advanced, StepReview).
+
+src/utils/exportProject.js — Utilidad que genera y descarga el ZIP final con index.html, styles.css, script.js y assets del proyecto.
+
+src/pages/ — Páginas principales: Home, About, Support, dashboard de usuario y panel de administración.
+   package.json — Dependencias principales: react@19.2.5, react-router-dom@7, axios, framer-motion, lucide-react,  tailwindcss.
+
+Cobertura de tests con vitest y @testing-library/react.
+============================================================================================================
+
+
+============================================================================================================
 Landingbackend-main.zip
-El archivo Landingbackend usando Spring Boot 3.2.5. Actúa como el núcleo del sistema, gestionando la autenticación, la lógica transaccional, el acceso a la base de datos relacional y la orquestación de llamadas hacia servicios externos.
-URL publica del repositorio: https://github.com/Amaaruu/Landingbackend.git
 
+El archivo Landingbackend usa Spring Boot 3.2.5. Actúa como el núcleo del sistema, gestionando la autenticación, la lógica transaccional, el acceso a la base de datos relacional y la orquestación de llamadas hacia servicios externos.
+
+URL pública del repositorio: https://github.com/Amaaruu/Landingbackend.git
+Contenido principal:
+
+src/main/java/Landing/Backend/controller/AuthController.java — Endpoints /api/v1/auth/register y /api/v1/auth/login. Gestiona registro, login y emisión de tokens JWT.
+
+src/main/java/Landing/Backend/controller/TransactionController.java — Endpoints /api/v1/transactions. Creación y consulta de pagos por plan. Actualización de estado exclusiva para ROLE_ADMIN.
+
+src/main/java/Landing/Backend/controller/LogController.java — Endpoints /api/v1/logs. Registro y consulta de auditoría de eventos del sistema.
+
+src/main/java/Landing/Backend/security/JwtService.java — Generación y validación de tokens JWT estándar y tokens de landing con expiración de 24 horas.
+
+src/main/java/Landing/Backend/security/JwtAuthenticationFilter.java — Filtro que intercepta cada request, extrae y valida el Bearer token antes de autorizar el acceso.
+
+src/main/java/Landing/Backend/service/LandingProjectService.java — Lógica de negocio para crear proyectos, normalizar el nombre del plan (BASIC, INTERMEDIATE, PREMIUM) y delegar la generación al motor de IA.
+
+src/main/java/Landing/Backend/service/EmailService.java — Envío de correos vía Resend: bienvenida, proyecto listo y formulario de contacto.
+
+src/main/java/Landing/Backend/config/CloudinaryConfig.java — Integración con Cloudinary para almacenamiento de imágenes (hero y logo del proyecto).
+
+src/main/java/Landing/Backend/model/ — Entidades JPA: User, Transaction, LandingProject, DesignPlan, Log.
+
+Dockerfile — Build multi-etapa: compilación con eclipse-temurin:21-jdk-alpine y ejecución con eclipse-temurin:21-jre-alpine.
+
+render.yaml — Configuración de despliegue en Render para el backend (Docker) y la Python API (Python), con variables de entorno para NeonDB PostgreSQL, Cloudinary, Resend y JWT.
+
+Tests con JUnit 5, Mockito, MockMvc y Gatling para pruebas de carga.
+============================================================================================================
+
+============================================================================================================
 WLSuitePythonAPI-main.zip
-El archivo WLSuitePythonAPI-main Es un componente desacoplado que recibe las solicitudes estructuradas del Backend Central y se encarga exclusivamente de procesar los prompts.
-URL publica del repositorio: https://github.com/Amaaruu/WLSuitePythonAPI.git
+El archivo WLSuitePythonAPI-main es un componente desacoplado que recibe las solicitudes estructuradas del Backend Central y se encarga exclusivamente de procesar los prompts.
+
+URL pública del repositorio: https://github.com/Amaaruu/WLSuitePythonAPI.git
+Contenido principal:
+
+main.py — Aplicación FastAPI (WLSuite AI Engine v3). Expone el endpoint de generación que recibe el ProjectData y retorna el HTML de la landing.
+
+Modelos de IA asignados por plan mediante OpenRouter:
+
+BASIC → google/gemini-2.5-flash-lite (hasta 3.000 tokens)
+INTERMEDIATE → openai/gpt-4o-mini (hasta 5.500 tokens)
+PREMIUM → anthropic/claude-haiku-4.5 (hasta 8.000 tokens)
+
+
+Mapas semánticos (SECTOR_MAP, LANDING_GOAL_MAP, TARGET_AUDIENCE_MAP, TONE_MAP, etc.) que traducen las claves del formulario a descripciones enriquecidas para el prompt.
+
+render.yaml — Despliegue en Render con uvicorn main:app como comando de inicio.
+
+test_main.py — Suite completa de tests con pytest y TestClient de FastAPI.
+
+Variables de entorno requeridas: OPENROUTER_API_KEY.
+
+
+============================================================================================================
+
+
+
+
